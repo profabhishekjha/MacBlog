@@ -22,4 +22,3 @@ export const GET = async () => {
     );
   }
 };
-//Create a comment
