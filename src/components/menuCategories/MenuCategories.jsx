@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./menuCategories.module.css";
+import styles from "./menucategories.module.css";
 
 const getData = async () => {
   const res = await fetch("http:localhost:3000/api/categories", {
