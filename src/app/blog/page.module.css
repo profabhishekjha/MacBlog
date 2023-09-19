@@ -1,0 +1,10 @@
+.heading{
+    background-color: coral;
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+}
+.content{
+    display: flex;
+    gap: 50px;
+}
