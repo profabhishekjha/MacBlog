@@ -61,9 +61,14 @@
     .title {
       font-size: 64px;
     }
-  
+    .post {
+      display: flex;
+      flex-direction: column;
+      height: 900px;
+    }
     .imgContainer {
-      display: none;
+      flex-direction: column; /* Display image vertically on mobile */
+      height: 300px; /* Allow the container to grow with content */
     }
   }
   
@@ -76,5 +81,15 @@
   @media screen and (max-width: 640px) {
     .title {
       font-size: 36px;
+    }
+    .post {
+      display: flex;
+      flex-direction: column;
+      height: 900px;
+    }
+    .imgContainer {
+      flex-direction: column; /* Display image vertically on mobile */
+      height: 300px;
+      width: 300px;
     }
   }
