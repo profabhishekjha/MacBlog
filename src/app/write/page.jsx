@@ -18,7 +18,8 @@ import toast from "react-hot-toast";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Write = () => {
-  const { status } = useSession();
+  const { data: session } = useSession(); // Use "data" instead of "status" to access user data
+  const [isFeatured, setIsFeatured] = useState(false); // State to handle the "isFeatured" checkbox
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -35,15 +36,10 @@ const Write = () => {
       const storageRef = ref(storage, name);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
-      // Register three observers:
-      // 1. 'state_changed' observer, called any time the state changes
-      // 2. Error observer, called on failure
-      // 3. Completion observer, called on successful completion
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
@@ -59,8 +55,6 @@ const Write = () => {
         },
         (error) => {},
         () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setMedia(downloadURL);
           });
@@ -69,21 +63,7 @@ const Write = () => {
     };
     file && upload();
   }, [file]);
-  if (status === "loading") {
-    return (
-      <Image
-        className={styles.loading}
-        alt=""
-        src="https://i.gifer.com/ZKZg.gif"
-        width={70}
-        height={70}
-      />
-    );
-  }
 
-  if (status === "unauthenticated") {
-    router.push("/");
-  }
   const slugify = (str) =>
     str
       .toLowerCase()
@@ -103,8 +83,11 @@ const Write = () => {
         img: media,
         slug: slugify(title),
         catSlug: catSlug || "style",
+        isFeatured:
+          isFeatured && session?.user?.email === "jhaabhishek9200@gmail.com",
       }),
     });
+
     if (res.status === 200) {
       setLoading(false);
       const data = await res.json();
@@ -113,8 +96,27 @@ const Write = () => {
     }
   };
 
+  // Check if the user's email matches the allowed email
+  const isAllowedUser = session?.user?.email === "jhaabhishek910@gmail.com";
+
+  // Handler for the "isFeatured" checkbox
+  const handleIsFeaturedChange = (event) => {
+    setIsFeatured(event.target.checked);
+  };
+
   return (
     <div className={styles.container}>
+      {/* Render the "isFeatured" checkbox for the allowed user */}
+      {isAllowedUser && (
+        <label>
+          <input
+            type="checkbox"
+            checked={isFeatured}
+            onChange={handleIsFeaturedChange}
+          />
+          Is Featured
+        </label>
+      )}
       <input
         type="text"
         placeholder="Title..."
