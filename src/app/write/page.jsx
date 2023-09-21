@@ -107,16 +107,7 @@ const Write = () => {
   return (
     <div className={styles.container}>
       {/* Render the "isFeatured" checkbox for the allowed user */}
-      {isAllowedUser && (
-        <label>
-          <input
-            type="checkbox"
-            checked={isFeatured}
-            onChange={handleIsFeaturedChange}
-          />
-          Is Featured
-        </label>
-      )}
+
       <input
         type="text"
         placeholder="Title..."
@@ -134,6 +125,19 @@ const Write = () => {
         <option value="travel">travel</option>
         <option value="coding">coding</option>
       </select>
+      {isAllowedUser && (
+        <label className={styles.featureLabel}>
+          <input
+            className={styles.featured}
+            type="checkbox"
+            checked={isFeatured}
+            onChange={handleIsFeaturedChange}
+          ></input>
+          <p className={styles.featureText}>
+            Make this Post Featured on Editor's Choice
+          </p>
+        </label>
+      )}
       {loading && (
         <div className={styles.loadingImage}>
           <Image
@@ -145,22 +149,25 @@ const Write = () => {
           />
         </div>
       )}
+
       {media && (
         <div className={styles.imageContainer}>
           <Image
             src={media}
             className={styles.image}
-            width={100}
-            height={100}
+            width={300}
+            height={300}
             alt=""
           />
         </div>
       )}
+
       <div className={styles.editor}>
         <button className={styles.button} onClick={() => setOpen(!open)}>
           <Image
-            src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/add-43.png"
+            src="/plus.svg"
             alt=""
+            className={styles.plus}
             width={16}
             height={16}
           />
@@ -178,7 +185,7 @@ const Write = () => {
               <label htmlFor="image">
                 <Image
                   style={{ cursor: "pointer", width: "100%", height: "100%" }}
-                  src="https://icons.veryicon.com/png/o/internet--web/flatten-icon/gallery-17.png"
+                  src="/camera.svg"
                   alt=""
                   width={40}
                   height={40}
@@ -196,6 +203,7 @@ const Write = () => {
           placeholder="Tell Your Story..."
         />
       </div>
+
       <button className={styles.publish} onClick={handleSubmit}>
         Publish
       </button>

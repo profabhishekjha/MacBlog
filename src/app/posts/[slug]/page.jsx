@@ -19,7 +19,24 @@ const SinglePage = async ({ params }) => {
   const { slug } = params;
 
   const data = await getData(slug);
-  console.log(data);
+
+  function formatDate(dateString) {
+    const dateObj = new Date(dateString);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1; // Adding 1 because months are 0-indexed
+    const year = dateObj.getFullYear();
+    const hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes();
+
+    // Add leading zeros if needed
+    const formattedDate = `${day < 10 ? "0" : ""}${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} - ${hours < 10 ? "0" : ""}${hours}:${
+      minutes < 10 ? "0" : ""
+    }${minutes}`;
+
+    return formattedDate;
+  }
 
   return (
     <div className={styles.container}>
@@ -41,7 +58,7 @@ const SinglePage = async ({ params }) => {
             <div className={styles.userTextContainer}>
               <span className={styles.username}>{data?.user.name}</span>
               <span className={styles.date}>
-                {data?.createdAt.substring(0, 10)}
+                {formatDate(data?.createdAt.substring(0, 10))}
               </span>
             </div>
           </div>
