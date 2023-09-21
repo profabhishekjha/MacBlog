@@ -27,21 +27,17 @@
 
 .button,
 .addButton {
+  margin-top: 15px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: transparent;
-  border: 1px solid var(--textColor);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-.addButton {
-  border-color: #1a8917;
-  
-}
 
 .add{
   display: flex;
@@ -88,15 +84,9 @@
 .imageContainer{
 padding: 10px;
 z-index: 1;
-height: 300px;
-width: 100%;
+width: 30%;
 position: relative;
 
-}
-.image{
-  width: 100%;
-  height: 100%;
-  
 }
 .loadingImage{
   height: 90vh;
@@ -111,4 +101,23 @@ position: relative;
 position: absolute;
 top: 50%;
 left: 50%;
+}
+
+.featureLabel {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.featured {
+  
+  width: 50px;
+}
+
+.featureText{
+  font-weight: 800;
+  font-style: italic;
+}
+.plus{
+  width: 45px;
+  height: 45px;
 }
