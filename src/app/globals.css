@@ -55,6 +55,11 @@
     color: #b3b3b1;
   }
  
+  .dark .dark-svg path {
+    fill: white; /* Change the fill color to white in dark mode */
+    stroke: white; /* Change the stroke color to white in dark mode */
+  }
+  
 
   @media screen and (max-width: 1536px) {
     .wrapper {
