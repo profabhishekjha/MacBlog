@@ -81,17 +81,23 @@
   border-radius: 20px;
   z-index: 1000;
 }
-.imageContainer{
-padding: 10px;
-z-index: 1;
-width: 30%;
-position: relative;
 
+.imageContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: relative;
 }
+
+.image{
+  border-radius: 10px;
+}
+
 .loadingImage{
   height: 90vh;
   width: 90vw;
-  background-color: white;
   z-index: 500;
   opacity: 0.8;
   position: absolute;
