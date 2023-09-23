@@ -119,7 +119,7 @@ const Write = () => {
         onChange={(e) => setCatSlug(e.target.value)}
       >
         <option value="style">style</option>
-        <option value="fashion">fashion</option>
+        <option value="experience">Experience</option>
         <option value="food">food</option>
         <option value="culture">culture</option>
         <option value="travel">travel</option>
