@@ -1,54 +1,55 @@
-.logincontainer {
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 300px;
- 
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .logincontainer .heading {
-    color: #333;
-  }
-  
-  .socialbuttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  
-  
-.google {
-    background-color: #4285f4;
-    color: #fff;
-    padding: 10px;
-  }
-  
-.facebook {
-    background-color: #1877f2;
-    color: #fff;
-    padding: 10px;
-  }
-  
- .github {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-  }
-  
-.loading{
-   position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
 }
-  
-  /* Media query for responsiveness */
-  @media (max-width: 480px) {
-    .login-container {
-      width: 90%;
-    }
+
+.wrapper {
+  background-color: var(--softBg);
+  padding: 150px 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 10px;
+}
+
+.socialButton {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialButton:first-child {
+  background-color: #ff5555;
+}
+
+.socialButton:nth-child(2) {
+  background-color: #111;
+}
+
+.socialButton:nth-child(3) {
+  background-color: #087bea;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 50px 100px;
   }
+}
+@media screen and (max-width: 640px) {
+  .wrapper {
+    padding: 30px;
+  }
+
+  .socialButton{
+    font-weight: 400;
+    font-size: 14px;
+  }
+}

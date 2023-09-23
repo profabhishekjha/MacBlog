@@ -23,12 +23,14 @@ const Login = () => {
     router.push("/");
   }
   return (
-    <div className={styles.logincontainer}>
-      <h2 className={styles.heading}>Login</h2>
-      <div className={styles.socialbuttons}>
-        <button className={styles.google} onClick={() => signIn("google")}>
-          Login with Google
-        </button>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.socialButton} onClick={() => signIn("google")}>
+          Sign in with Google
+        </div>
+        <div className={styles.socialButton} onClick={() => signIn("facebook")}>
+          Sign in with Facebook
+        </div>
       </div>
     </div>
   );
