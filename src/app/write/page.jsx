@@ -134,7 +134,7 @@ const Write = () => {
             onChange={handleIsFeaturedChange}
           ></input>
           <p className={styles.featureText}>
-            Make this Post Featured on Editor's Choice
+            {`Make this Post Featured on Editor's Choice`}
           </p>
         </label>
       )}
