@@ -85,8 +85,8 @@ const Write = () => {
         catSlug: catSlug || "style",
         isFeatured:
           isFeatured &&
-          (session?.user?.email === `${process.env.ADMIN1}` ||
-            session?.user?.email === `${process.env.ADMIN2}`),
+          (session?.user?.email === "jhaabhishek910@gmail.com" ||
+            session?.user?.email === "mehakraina20017@gmail.com"),
       }),
     });
 
@@ -100,7 +100,8 @@ const Write = () => {
 
   // Check if the user's email matches the allowed email
   const isAllowedUser =
-    session?.user?.email === `${process.env.ADMIN1}` || `${process.env.ADMIN2}`;
+    session?.user?.email === "jhaabhishek910@gmail.com" ||
+    "mehakraina20017@gmail.com";
 
   // Handler for the "isFeatured" checkbox
   const handleIsFeaturedChange = (event) => {
