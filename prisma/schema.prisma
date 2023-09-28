@@ -95,3 +95,12 @@ model ContactSubmission {
   message   String
   createdAt DateTime @default(now())
 }
+
+model Donation {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  amount    Int
+  status    String // You can use this field to track the payment status
+}

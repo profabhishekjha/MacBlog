@@ -1,0 +1,46 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+  }
+  
+  .label {
+    margin-bottom: 1rem;
+    display: flex;
+  }
+  
+  .input{
+    padding: 10px ;
+    height: 50px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  
+  .message{
+    padding: 0.5rem;
+    height: 170px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  
+  .button {
+    background-color: red;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 60px;
+    width: 200px;
+    margin: 0 auto;
+
+  }
+  
+  .button:hover {
+    background-color: pink;
+  }

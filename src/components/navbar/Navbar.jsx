@@ -33,6 +33,9 @@ const Navbar = () => {
         <Link href="/contact" className={styles.link}>
           Contact
         </Link>
+        <Link href="/donate" className={styles.link}>
+          Donate
+        </Link>
         <AuthLinks />
       </div>
     </div>
