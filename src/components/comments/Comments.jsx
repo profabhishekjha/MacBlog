@@ -51,6 +51,8 @@ const Comments = ({ postSlug }) => {
     }
   };
 
+  const numComments = data ? data.length : 0;
+
   function formatDate(dateString) {
     const dateObj = new Date(dateString);
     const day = dateObj.getDate();
@@ -70,7 +72,7 @@ const Comments = ({ postSlug }) => {
   }
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Comments</h1>
+      <h1 className={styles.title}> Comments ({numComments})</h1>
       {session ? (
         <div className={styles.write}>
           <textarea
@@ -111,7 +113,7 @@ const Comments = ({ postSlug }) => {
                 <div className={styles.userInfo}>
                   <span className={styles.username}>{item.user.name}</span>
                   <span className={styles.date}>
-                    {formatDate(item?.createdAt?.substring(0, 10))}
+                    {formatDate(item?.createdAt)}
                   </span>
                 </div>
               </div>

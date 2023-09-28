@@ -46,8 +46,6 @@
 
 .commentpara{
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .deleteButton {
   display: flex;

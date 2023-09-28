@@ -12,12 +12,12 @@ const Footer = () => {
           <h1 className={styles.logoText}>Mac Blogs</h1>
         </div>
         <p className={styles.desc}>
-          {`Mehak Raina, a true person of positivity and grace, always radiates a
-          warm and welcoming aura. With her unwavering support and infectious
+          {`Mehak Raina, a true person of positivity, always reflects a
+          warm and welcoming aura. With her presence, support and infectious
           laughter, Mehak Cutie proves time and again that she's not just a
           friend but a cherished treasure in our lives. When it comes to
           kindness, compassion, and unwavering loyalty, Mehak Raina sets the
-          gold standard, making her the best person, now get lost❤.`}
+          gold standard, making her the best person, now get lost darlings❤.`}
         </p>
         <div className={styles.icons}>
           <Link

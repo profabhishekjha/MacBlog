@@ -84,7 +84,9 @@ const Write = () => {
         slug: slugify(title),
         catSlug: catSlug || "style",
         isFeatured:
-          isFeatured && session?.user?.email === "jhaabhishek9200@gmail.com",
+          isFeatured &&
+          (session?.user?.email === `${process.env.ADMIN1}` ||
+            session?.user?.email === `${process.env.ADMIN2}`),
       }),
     });
 
@@ -97,7 +99,8 @@ const Write = () => {
   };
 
   // Check if the user's email matches the allowed email
-  const isAllowedUser = session?.user?.email === "jhaabhishek910@gmail.com";
+  const isAllowedUser =
+    session?.user?.email === `${process.env.ADMIN1}` || `${process.env.ADMIN2}`;
 
   // Handler for the "isFeatured" checkbox
   const handleIsFeaturedChange = (event) => {
@@ -119,7 +122,7 @@ const Write = () => {
         onChange={(e) => setCatSlug(e.target.value)}
       >
         <option value="style">style</option>
-        <option value="fashion">fashion</option>
+        <option value="experience">Experience</option>
         <option value="food">food</option>
         <option value="culture">culture</option>
         <option value="travel">travel</option>

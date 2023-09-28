@@ -19,15 +19,19 @@ export const GET = async (req) => {
   };
 
   try {
-    //to make everything in one query we use $transcaction
-    const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany(query),
-      prisma.post.count({ where: query.where }),
-    ]);
+    // Execute the findMany query
+    const posts = await prisma.post.findMany(query);
 
-    return new NextResponse(JSON.stringify({ posts, count }, { status: 200 }));
+    // Reverse the array
+    const reversedPosts = posts.reverse();
+    // Count query remains the same
+    const count = await prisma.post.count({ where: query.where });
+
+    return new NextResponse(
+      JSON.stringify({ posts: reversedPosts, count }, { status: 200 })
+    );
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
     );
