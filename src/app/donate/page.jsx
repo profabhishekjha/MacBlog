@@ -26,7 +26,7 @@ const Donate = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Order created:", data); // Log the order data
+        console.log("orders msg: ", data);
         handleRazorpayPayment(data.orderId);
       } else {
         console.error("Error creating order:", response.statusText);

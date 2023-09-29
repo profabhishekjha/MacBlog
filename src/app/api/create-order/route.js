@@ -24,6 +24,9 @@ export const POST = async (req) => {
       amount: body.donate * 100,
       currency: "INR",
       payment_capture: 1,
+      notes: {
+        donationId: donation.id,
+      },
     };
 
     const order = await rzp.orders.create(options);
