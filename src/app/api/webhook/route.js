@@ -5,8 +5,21 @@ import { NextResponse } from "next/server";
 export const POST = async (req) => {
   try {
     const body = await req.json();
-
     const { event, payload } = body;
+
+    // Your Razorpay key secret
+    const razorpayKeySecret = "oBtdfiQn3POvk0BtxYCUC6FY";
+
+    // Verify the Razorpay signature
+    const generatedsignature = crypto
+      .createHmac("sha256", razorpayKeySecret)
+      .update(payload.payment.entity.order_id + "|" + payload.payment.entity.id)
+      .digest("hex");
+
+    if (generatedsignature !== payload.razorpay_signature) {
+      console.error("Invalid Razorpay signature");
+      return new NextResponse("Invalid Razorpay signature", { status: 401 });
+    }
 
     switch (event) {
       case "payment.authorized":
