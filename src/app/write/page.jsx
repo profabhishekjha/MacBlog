@@ -29,6 +29,11 @@ const Write = () => {
   const [catSlug, setCatSlug] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Check if the user's email matches the allowed email
+  const isAllowedUser =
+    session?.user?.email === process.env.ADMIN1 ||
+    session?.user?.email === process.env.ADMIN2;
+
   useEffect(() => {
     const storage = getStorage(app);
     const upload = () => {
@@ -85,8 +90,8 @@ const Write = () => {
         catSlug: catSlug || "style",
         isFeatured:
           isFeatured &&
-          (session?.user?.email === `${process.env.ADMIN1}` ||
-            session?.user?.email === `${process.env.ADMIN2}`),
+          (session?.user?.email === process.env.ADMIN1 ||
+            session?.user?.email === process.env.ADMIN2),
       }),
     });
 
@@ -97,10 +102,6 @@ const Write = () => {
       router.push(`/posts/${data.slug}`);
     }
   };
-
-  // Check if the user's email matches the allowed email
-  const isAllowedUser =
-    session?.user?.email === `${process.env.ADMIN1}` || `${process.env.ADMIN2}`;
 
   // Handler for the "isFeatured" checkbox
   const handleIsFeaturedChange = (event) => {

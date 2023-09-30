@@ -16,6 +16,12 @@ export const POST = async (req) => {
       .update(payload.payment.entity.order_id + "|" + payload.payment.entity.id)
       .digest("hex");
 
+    const isValid = razorpay.validateWebhookSignature(
+      reqBody,
+      signature,
+      razorpayKeySecret
+    );
+
     if (generatedsignature !== payload.razorpay_signature) {
       console.error("Invalid Razorpay signature");
       return new NextResponse("Invalid Razorpay signature", { status: 401 });
