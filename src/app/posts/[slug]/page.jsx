@@ -1,57 +1,52 @@
-import Menu from "../../../components/menu/Menu";
-import styles from "./posts.module.css";
-import Image from "next/image";
-import Comments from "../../../components/comments/Comments";
+import Menu from '../../../components/menu/Menu'
+import styles from './posts.module.css'
+import Image from 'next/image'
+import Comments from '../../../components/comments/Comments'
+import DeleteButton from '@/components/deletePost/DeletePost'
 
 const getData = async (slug) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, {
-    cache: "no-store",
-  });
+    cache: 'no-store'
+  })
 
   if (!res.ok) {
-    throw new Error("Failed");
+    throw new Error('Failed')
   }
 
-  return res.json();
-};
+  return res.json()
+}
 
 const SinglePage = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = params
 
-  const data = await getData(slug);
+  const data = await getData(slug)
 
   function formatDate(dateString) {
-    const dateObj = new Date(dateString);
-    const day = dateObj.getDate();
-    const month = dateObj.getMonth() + 1; // Adding 1 because months are 0-indexed
-    const year = dateObj.getFullYear();
-    const hours = dateObj.getHours();
-    const minutes = dateObj.getMinutes();
+    const dateObj = new Date(dateString)
+    const day = dateObj.getDate()
+    const month = dateObj.getMonth() + 1
+    const year = dateObj.getFullYear()
+    const hours = dateObj.getHours()
+    const minutes = dateObj.getMinutes()
 
     // Add leading zeros if needed
-    const formattedDate = `${day < 10 ? "0" : ""}${day}/${
-      month < 10 ? "0" : ""
-    }${month}/${year} - ${hours < 10 ? "0" : ""}${hours}:${
-      minutes < 10 ? "0" : ""
-    }${minutes}`;
+    const formattedDate = `${day < 10 ? '0' : ''}${day}/${
+      month < 10 ? '0' : ''
+    }${month}/${year} - ${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`
 
-    return formattedDate;
+    return formattedDate
   }
 
   return (
     <div className={styles.container}>
+      <DeleteButton postId={data.id} />
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
           <h1 className={styles.title}>{data?.title}</h1>
           <div className={styles.user}>
             {data?.user?.image && (
               <div className={styles.userImageContainer}>
-                <Image
-                  src={data.user.image}
-                  alt=""
-                  fill
-                  className={styles.avatar}
-                />
+                <Image src={data.user.image} alt="" fill className={styles.avatar} />
               </div>
             )}
 
@@ -69,10 +64,7 @@ const SinglePage = async ({ params }) => {
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{ __html: data?.desc }}
-          />
+          <div className={styles.description} dangerouslySetInnerHTML={{ __html: data?.desc }} />
           <div className={styles.comment}>
             <Comments postSlug={slug} />
           </div>
@@ -80,7 +72,7 @@ const SinglePage = async ({ params }) => {
         <Menu />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SinglePage;
+export default SinglePage

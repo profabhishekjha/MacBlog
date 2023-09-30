@@ -1,66 +1,66 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import styles from "./donate.module.css";
-import toast, { Toaster } from "react-hot-toast";
+import { useState } from 'react'
+import styles from './donate.module.css'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Donate = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [donate, setDonate] = useState(0);
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [donate, setDonate] = useState(0)
+  const [paymentStatus, setPaymentStatus] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       // Send form data to the server, including the user's email
       const response = await fetch(`/api/create-order`, {
         // Updated endpoint
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({ name, email, donate }),
         headers: {
-          "Content-Type": "application/json",
-        },
-      });
+          'Content-Type': 'application/json'
+        }
+      })
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("orders msg: ", data);
-        handleRazorpayPayment(data.orderId);
+        const data = await response.json()
+        console.log('orders msg: ', data)
+        handleRazorpayPayment(data.orderId)
       } else {
-        console.error("Error creating order:", response.statusText);
-        toast.error("Error creating order");
+        console.error('Error creating order:', response.statusText)
+        toast.error('Error creating order')
       }
     } catch (error) {
-      console.error("Error submitting the form:", error);
-      toast.error("Error submitting the form");
+      console.error('Error submitting the form:', error)
+      toast.error('Error submitting the form')
     }
-  };
+  }
 
   const handleRazorpayPayment = (orderId) => {
     // Load the Razorpay script
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
+    const script = document.createElement('script')
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+    script.async = true
     script.onload = () => {
       // Create a new instance of Razorpay with the order ID
       const rzp = new window.Razorpay({
-        key: "rzp_test_ki28mf8RJoXGw4", // Replace with your Razorpay API Key
+        key: 'rzp_test_ki28mf8RJoXGw4',
         order_id: orderId, // Order ID obtained from the server
         handler: function (response) {
-          console.log("Payment successful:", response);
-          setPaymentStatus("Success");
-          toast.success("Payment Successful");
-        },
-      });
+          console.log('Payment successful:', response)
+          setPaymentStatus('Success')
+          toast.success('Payment Successful')
+        }
+      })
 
-      rzp.open();
-    };
+      rzp.open()
+    }
 
     // Append the script to the document
-    document.body.appendChild(script);
-  };
+    document.body.appendChild(script)
+  }
 
   return (
     <div className={styles.container}>
@@ -110,7 +110,7 @@ const Donate = () => {
       </form>
       <Toaster />
     </div>
-  );
-};
+  )
+}
 
-export default Donate;
+export default Donate
