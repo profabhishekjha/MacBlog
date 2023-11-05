@@ -26,7 +26,8 @@ const Write = () => {
 
   // Check if the user's email matches the allowed email
   const isAllowedUser =
-    session?.user?.email === process.env.ADMIN1 || session?.user?.email === process.env.ADMIN2
+    session?.user?.email === 'jhaabhishek910@gmail.com' ||
+    session?.user?.email === process.env.ADMIN2
 
   useEffect(() => {
     const storage = getStorage(app)
@@ -83,7 +84,7 @@ const Write = () => {
         catSlug: catSlug || 'style',
         isFeatured:
           isFeatured &&
-          (session?.user?.email === process.env.ADMIN1 ||
+          (session?.user?.email === 'jhaabhishek910@gmail.com' ||
             session?.user?.email === process.env.ADMIN2)
       })
     })
