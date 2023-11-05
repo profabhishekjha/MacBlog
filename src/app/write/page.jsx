@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import toast from 'react-hot-toast'
+import { ADMIN1, ADMIN2 } from '@/config'
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
@@ -27,8 +28,7 @@ const Write = () => {
   // Check if the user's email matches the allowed email
   const isAllowedUser =
     session?.user?.email === 'jhaabhishek910@gmail.com' ||
-    session?.user?.email === process.env.ADMIN2
-
+    session?.user?.email === 'mehakraina20017@gmail.com'
   useEffect(() => {
     const storage = getStorage(app)
     const upload = () => {
@@ -85,7 +85,7 @@ const Write = () => {
         isFeatured:
           isFeatured &&
           (session?.user?.email === 'jhaabhishek910@gmail.com' ||
-            session?.user?.email === process.env.ADMIN2)
+            session?.user?.email === 'mehakraina20017@gmail.com')
       })
     })
     /* cmt */
