@@ -61,7 +61,6 @@ const Footer = () => {
             Travel
           </Link>
         </div>
-        <img src="https://hitwebcounter.com/counter/counter.php?page=11224377&style=0030&nbdigits=5&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" />
         <div className={styles.list}>
           <span className={styles.listTitle}>Social</span>
           <Link
